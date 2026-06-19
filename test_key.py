@@ -7,10 +7,8 @@ load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 try:
-    models = client.models.list()
-    print("API KEY IS VALID")
-    for model in models:
-        print(model.name)
-        break
+    models = list(client.models.list())
+    print("SUCCESS")
+    print(models[0].name if models else "No models found")
 except Exception as e:
     print(e)
