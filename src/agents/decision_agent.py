@@ -3,6 +3,7 @@ import json
 from src.llm.gemini_client import GeminiClient
 from src.llm.json_parser import JsonParser
 from src.models.decision import Decision
+print("DecisionAgent loaded from:", __file__)
 
 
 class DecisionAgent:
@@ -16,12 +17,17 @@ class DecisionAgent:
         self,
         claim,
         matching,
+        business_rules,
     ):
 
         prompt = (
             self.prompt
             .replace("{claim}", json.dumps(claim.__dict__, indent=2))
             .replace("{matching}", json.dumps(matching, indent=2))
+	    .replace(
+            	"{business_rules}",
+                json.dumps(business_rules, indent=2),
+            )
         )
 
         response = self.client.generate(prompt)

@@ -79,7 +79,7 @@ class InsuranceOrchestrator:
             matching,
         )
 
-        if rule_result["status"] != "PASS":
+        if rule_result["status"] == "REJECT":
             return {
                 "claim": claim,
                 "image_quality": quality_report,
@@ -96,6 +96,7 @@ class InsuranceOrchestrator:
         decision = self.decision_agent.decide(
             claim,
             matching,
+            rule_result
         )
 
         # --------------------------------------------------

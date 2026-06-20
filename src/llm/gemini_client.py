@@ -13,6 +13,10 @@ class GeminiClient:
     def __init__(self):
         api_key = os.getenv("GEMINI_API_KEY")
 
+        print("\n========== GEMINI CLIENT ==========")
+        print("Loaded Key:", api_key[:15])
+        print("===================================\n")
+
         if not api_key:
             raise ValueError("GEMINI_API_KEY not found.")
 
